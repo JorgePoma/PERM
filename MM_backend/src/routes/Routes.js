@@ -5,9 +5,9 @@ const router = Router();
 
 router.get('/get-motos', getAllMotos);
 
-router.get('/get-motos/:mark', geMotosbyMark);
+router.get('/get-motos/mark/:mark', geMotosbyMark);
 
-router.get('/get-motos/:type', geMotosbyType);
+router.get('/get-motos/type/:type', geMotosbyType);
 
 router.post('/new-moto', createMoto);
 

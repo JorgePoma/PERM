@@ -4,7 +4,7 @@ const pool = require('../db');
 const getAllMotos = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM task')
-        res.json(result.rows[0]);
+        res.json(result.rows);
     } catch (error) {
         console.log(error.message);
     }
@@ -18,7 +18,7 @@ const geMotosbyMark = async (req, res) => {
         if (result.rows.length === 0) return res.status(404).json({
             message: "moto not found",
         });
-        res.json(result.rows[0]);
+        res.json(result.rows);
     } catch (error) {
         console.log(error.message);
     }
@@ -32,7 +32,7 @@ const geMotosbyType = async (req, res) => {
         if (result.rows.length === 0) return res.status(404).json({
             message: "moto not found",
         });
-        res.json(result.rows[0]);
+        res.json(result.rows);
     } catch (error) {
         console.log(error.message);
     }
