@@ -1,17 +1,17 @@
 const pool = require('../db');
 
 //obtener todas las motos
-const getAllMotos = async (req, res) => {
+const getAllMotos = async (req, res, next) => {
     try {
         const result = await pool.query('SELECT * FROM task')
         res.json(result.rows);
     } catch (error) {
-        console.log(error.message);
+        next(error)
     }
 }
 
 //obtener las motos por marca
-const geMotosbyMark = async (req, res) => {
+const geMotosbyMark = async (req, res, next) => {
     try {
         const { mark } = req.params;
         const result = await pool.query('SELECT * FROM task where mark = $1', [mark])
@@ -20,12 +20,12 @@ const geMotosbyMark = async (req, res) => {
         });
         res.json(result.rows);
     } catch (error) {
-        console.log(error.message);
+        next(error)
     }
 }
 
 //obtener las motos por tipo
-const geMotosbyType = async (req, res) => {
+const geMotosbyType = async (req, res, next) => {
     try {
         const { type } = req.params;
         const result = await pool.query('SELECT * FROM task where type = $1', [type])
@@ -34,12 +34,12 @@ const geMotosbyType = async (req, res) => {
         });
         res.json(result.rows);
     } catch (error) {
-        console.log(error.message);
+        next(error)
     }
 }
 
 //insertando motos
-const createMoto = async (req, res) => {
+const createMoto = async (req, res, next) => {
     const { type, mark, model, description, img, state, units } = req.body;
 
     try {
@@ -55,11 +55,11 @@ const createMoto = async (req, res) => {
         ])
         res.json(result.rows[0]);
     } catch (error) {
-        res.json({ error: error.message });
+        next(error)
     }
 }
 //actualizar motos
-const updateMoto = async (req, res) => {
+const updateMoto = async (req, res, next) => {
     const { id } = req.params;
     const { type, mark, model, description, img, state, units } = req.body;
 
@@ -77,7 +77,21 @@ const updateMoto = async (req, res) => {
         ])
         res.json(result.rows[0]);
     } catch (error) {
-        res.json({ error: error.message });
+        next(error)
+    }
+}
+
+//eliminar las motos por id
+const deleteMoto = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const result = await pool.query('DELETE FROM task where id = $1', [id])
+        if (result.rowCount === 0) return res.status(404).json({
+            message: "moto not found",
+        });
+        return res.status(204);
+    } catch (error) {
+        next(error)
     }
 }
 
@@ -86,5 +100,6 @@ module.exports = {
     geMotosbyMark,
     geMotosbyType,
     createMoto,
-    updateMoto
+    updateMoto,
+    deleteMoto
 }
