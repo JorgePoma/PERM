@@ -1,40 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { selectMotos } from "../features/moto/motoSlice";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Header() {
     const [burgerStatus, setBurgerStatus] = useState(false);
     const motos = useSelector(selectMotos);
-
+    
     return (
         <Container>
             <a translate='no'>
-                <Logo> Mo | Ma </Logo>
+                <Link to={'/'}>
+                <Logo > Mo | Ma </Logo>
+                </Link>
             </a>
             <Menu>
-                {motos && motos.map((moto, index)=>(
-                    <a key={index} href="#">{moto}</a>
+                {motos && motos.map((moto, index) => (
+                    <Link to ={`/details?type=${moto}`} key={index}>
+                        {moto}
+                    </Link>
                 ))}
             </Menu>
             <RightMenu>
-                <a href="#">Shop</a>
-                <a href="#">My Account</a>
-                <CustomMenu src="https://img.icons8.com/ios-filled/20/000000/menu--v1.png" onClick={()=>setBurgerStatus(true)}/>
+                <Link to='/details'>Shop</Link>
+                <CustomMenu src="https://img.icons8.com/ios-filled/20/000000/menu--v1.png" onClick={() => setBurgerStatus(true)} />
             </RightMenu>
             <BurguerNav show={burgerStatus}>
                 <CloseWrapper>
-                    <CustomClose src="https://img.icons8.com/ios/24/000000/chevron-right.png" onClick={()=>setBurgerStatus(false)}/>
+                    <CustomClose src="https://img.icons8.com/ios/24/000000/chevron-right.png" onClick={() => setBurgerStatus(false)} />
                 </CloseWrapper>
-                {motos && motos.map((moto, index)=>(
-                    <li key={index}><a href="#">{moto}</a></li>
+                <li className='title'><a href="#">TYPES</a></li>
+                {motos && motos.map((moto, index) => (
+                    <Link to={`/details/${moto}`} key={index}>
+                        <li>{moto}</li>
+                    </Link>
                 ))}
-                <li><a href="#">Existing Inventory</a></li>
-                <li><a href="#">Used Inventory</a></li>
-                <li><a href="#">Trade In</a></li>
-                <li><a href="#">Cybertruck</a></li>
-                <li><a href="#">Roadaster</a></li>
-                <li><a href="#">Existing Inventory</a></li>
+                <li className='title'><a href="#">BRANDS</a></li>
+                <li>Suzuki</li>
+                <li>Yamaha</li>
+                <li>Honda</li>
+                <li>KTM</li>
+                <li>Harley-Davidson</li>
             </BurguerNav>
         </Container>
     )
@@ -46,6 +53,7 @@ const Logo = styled.h1`
 font-family: 'Monoton', cursive;
 font-size: 30px;
 margin-top: 5px;
+cursor: pointer;
 `
 
 const Container = styled.div`
@@ -106,7 +114,7 @@ const BurguerNav = styled.div`
     flex-direction: column;
     text-align: start;
 // movimiento para el menu desplegrable derecho
-    transform: ${props => props.show ? 'translateX(0)':'translateX(100%)' };
+    transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform 0.3s ease-out;
     li {
         padding: 15px 0;
@@ -114,6 +122,10 @@ const BurguerNav = styled.div`
         a {
             font-weight: 600;
         }
+    }
+    .title{
+        text-align: center;
+        //background-color: #DA5757;
     }
 `
 const CustomClose = styled.img`

@@ -9,7 +9,7 @@ function Home() {
             <Section 
                 title="Modelos Deportivos"
                 description="Modelos profesionales de pista"
-                backgroundImg="https://www.wilock.com/wp-content/uploads/2018/09/aprilia-RSV4-FW.jpg"
+                backgroundImg="https://www.ventos.site/wp-content/uploads/2021/08/Honda-Rebel-300-e1621200645713.jpg"
                 leftBtnText="Ordena Ya"
                 rightBtnText="Inventario Disponible"
             />

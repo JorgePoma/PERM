@@ -6,6 +6,7 @@ function Section({ title, description, leftBtnText, rightBtnText, backgroundImg 
 
     return (
         <Wrap bgImage={backgroundImg}>
+            <Imag></Imag>
             <Fade bottom>
                 <Itemtext>
                     <h1>{title}</h1>
@@ -39,20 +40,31 @@ const Wrap = styled.div`
     background-image: ${props => `url("${props.bgImage}")`};
     background-repeat: no-repeat;                
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-between;     //vertical
     align-items: center;                 // horizontal
-
+    z-index: -2;
+`
+const Imag = styled.div`
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, .2);
+    z-index: -1;
 `
 const Itemtext = styled.div`
     padding-top: 15vh;
     text-align: center;
-    z-index: -1;
+    z-index: 1;
 `
 const Buttongroup = styled.div`
     display: flex;
     margin-button: 30px;
-    
+
     //media responsiva, para anchos menores a 768px los botones se muestran uno debajo del otro
 
     @media (max-width: 768px){

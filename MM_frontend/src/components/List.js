@@ -1,129 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function List() {
+    const [Motos, setMotos] = useState([]);
+    //obtener valores de URL
+    let {search} = useLocation();
+    let query = new URLSearchParams(search);
+
+    let type = query.get("type");
+    let mark = query.get("brand");
+    
+    const loadMotos = async () => {
+        const response = await fetch('http://localhost:4000/get-motos')
+        const data = await response.json()
+        setMotos(data);
+    }
+
+    const loadMotosType = async () => {
+        const response = await fetch(`http://localhost:4000/get-motos/type/${type}`)
+        const data = await response.json()
+        setMotos(data);
+        console.log(data);
+    }
+
+    const loadMotosBrand = async () => {
+        const response = await fetch(`http://localhost:4000/get-motos/mark/${mark}`)
+        const data = await response.json()
+        setMotos(data);
+        console.log(data);
+    }
+
+    const selectResult = () => {
+        if (type === null && mark === null){
+            loadMotos();
+        }else if (mark === null && type != null) {
+            loadMotosType();
+        }else if (type === null && mark != null){
+            loadMotosBrand();
+        }
+        return true;
+    }
+
+    useEffect(() => {
+         selectResult();
+    }, [search])
+
     return (
-        <Container>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.soymotero.net/sites/default/files/styles/max_width_800px/public/2021-09/ktm_450_smr.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.soymotero.net/sites/default/files/styles/max_width_800px/public/2021-09/ktm_450_smr.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
-            <Content>
-                <Wrap>
-                    <img src="https://www.motofichas.com/images/cache/01-harley-davidson-cvo-limited-2020-estudio-739-a.jpg" />
-                </Wrap>
-                <Description>
-                    <h3>Harley Davidson CVO Limited 2020</h3>
-                    <br/>
-                    <h5>Diseño Clasico y Elegante con amplios compartimientos y cajuelas para circular por la carretera</h5>
-                </Description>
-            </Content>
+        <Container >
+            <>
+                {Motos.map((moto, index) => (
+                    <Content key={index}>
+                        <Wrap>
+                            <img src={moto.img} />
+                        </Wrap>
+                        <Description>
+                            <h3>{moto.model}</h3>
+                            <br />
+                            <h5>{moto.description}</h5>
+                        </Description>
+                    </Content>
+                ))}
+            </>
         </Container>
     )
 }
@@ -136,6 +74,9 @@ const Container = styled.div`
     padding: 36px;
     grid-gap: 36px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media(max-width: 820px){
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 `
 const Content = styled.div`
     background-color: white;
@@ -155,17 +96,21 @@ const Content = styled.div`
         transform: scale(1.05);
         border-color: rgba(249, 249, 249, 0.8);
     }
+    @media(max-width: 600px){
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 `
 const Wrap = styled.div`
     img {
-        width: 100%;
+        margin-top: 1vh;
+        width: 40vh;
         height: 100%;
-        object-fit: cover;
-        padding: 10px;
+        //object-fit: cover;
+        padding: 0vh;
     }
 `
 const Description = styled.div`
     padding: 4vh;    
-    padding-top: 8vh;
+    //padding-top: 8vh;
     
 `

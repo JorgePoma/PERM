@@ -1,23 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Brands() {
+    const motos= ["suzuki", "yamaha", "honda", "ktm" ,"harley-davidson" ]
   return(
     <Container>
         <Wrap>
-            <img src="http://www.car-brand-names.com/wp-content/uploads/2016/03/Suzuki-logo-2.jpg"/>
+        <Link to ={`/details?brand=${motos[0]}`}>
+        <img src="http://www.car-brand-names.com/wp-content/uploads/2016/03/Suzuki-logo-2.jpg" alt=''/></Link>   
         </Wrap>
         <Wrap>
-            <img src="https://www.seekpng.com/png/detail/257-2576667_yamaha-transparent-png-yamaha-logo-black-png.png"/>
+        <Link to ={`/details?brand=${motos[1]}`} >
+            <img src="https://www.seekpng.com/png/detail/257-2576667_yamaha-transparent-png-yamaha-logo-black-png.png" alt=''/></Link>
         </Wrap>
         <Wrap>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_bFhavSuzkOpTkcyGlvbVSCnwre8ADbtzj3tGLrSQLoIqSBW5ITJqV_9EwxvSSJD05Os&usqp=CAU"/>
+        <Link to ={`/details?brand=${motos[2]}`} >
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_bFhavSuzkOpTkcyGlvbVSCnwre8ADbtzj3tGLrSQLoIqSBW5ITJqV_9EwxvSSJD05Os&usqp=CAU" alt=''/></Link>
         </Wrap>
         <Wrap>
-            <img src="https://cdn.worldvectorlogo.com/logos/ktm-racing-1.svg"/>
+        <Link to ={`/details?brand=${motos[3]}`} >   
+            <img src="https://cdn.worldvectorlogo.com/logos/ktm-racing-1.svg" alt=''/></Link>
         </Wrap>
         <Wrap>
-            <img src="https://cdn.andresmorales.es/wp-content/uploads/2015/04/isologo-harley.png"/>
+        <Link to ={`/details?brand=${motos[4]}`} >
+            <img src="https://cdn.andresmorales.es/wp-content/uploads/2015/04/isologo-harley.png" alt=''/></Link>
         </Wrap>
     </Container>
   ) 
@@ -32,6 +39,9 @@ const Container = styled.div`
     padding: 0px 0px 26px;
     grid-gap: 25px;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    @media(max-width: 768px){
+        display: none;
+    }
 
 `
 const Wrap = styled.div`

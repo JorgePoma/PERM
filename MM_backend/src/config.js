@@ -3,10 +3,10 @@ config()
 
 module.exports = {
     db: {
-        user: process.env.user,
-        password: process.env.password,
-        host: process.env.host,
-        port: process.env.port,
-        database: process.env.database
+        user: process.env.dbuser,
+        password: process.env.dbpassword,
+        host: process.env.dbhost,
+        port: process.env.dbport,
+        database: process.env.dbdatabase
     }
 }

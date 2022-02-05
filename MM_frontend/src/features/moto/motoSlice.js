@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    motos: ["Deportivos", "Urbanos", "Motocross", "Clásicos" ]
+    motos: ["sports", "urban", "motocross", "classic" ]
 }
 
 const motoSlice = createSlice({

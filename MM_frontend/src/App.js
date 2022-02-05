@@ -7,22 +7,24 @@ import Detail from "./components/Detail"
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
+
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-          <Route path="/details">
+          <Route exact path="/details">
             <Detail />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
+          <Route exact path="/details/:type" component={<Detail />}/>
+          <Route exact path="/details/:brand" component={<Detail />}/>
         </Switch>
       </Router>
     </div>
