@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom';
 function Header() {
     const [burgerStatus, setBurgerStatus] = useState(false);
     const motos = useSelector(selectMotos);
-    
+    const brands= ["suzuki", "yamaha", "honda", "ktm" ,"harley-davidson" ]
     return (
         <Container>
             <a translate='no'>
                 <Link to={'/'}>
-                <Logo > Mo | Ma </Logo>
+                    <Logo > Mo | Ma </Logo>
                 </Link>
             </a>
             <Menu>
                 {motos && motos.map((moto, index) => (
-                    <Link to ={`/details?type=${moto}`} key={index}>
+                    <Link to={`/details?type=${moto}`} key={index}>
                         {moto}
                     </Link>
                 ))}
@@ -30,18 +30,18 @@ function Header() {
                 <CloseWrapper>
                     <CustomClose src="https://img.icons8.com/ios/24/000000/chevron-right.png" onClick={() => setBurgerStatus(false)} />
                 </CloseWrapper>
-                <li className='title'><a href="#">TYPES</a></li>
+                <li className='title'><a href="">TYPES</a></li>
                 {motos && motos.map((moto, index) => (
-                    <Link to={`/details/${moto}`} key={index}>
+                    <Link to={`/details?type=${moto}`} key={index}>
                         <li>{moto}</li>
                     </Link>
                 ))}
-                <li className='title'><a href="#">BRANDS</a></li>
-                <li>Suzuki</li>
-                <li>Yamaha</li>
-                <li>Honda</li>
-                <li>KTM</li>
-                <li>Harley-Davidson</li>
+                <li className='title'><a href="">BRANDS</a></li>
+                <Link to ={`/details?brand=${brands[0]}`}><li>Suzuki</li></Link>
+                <Link to ={`/details?brand=${brands[1]}`}><li>Yamaha</li></Link>
+                <Link to ={`/details?brand=${brands[2]}`}><li>Honda</li></Link>
+                <Link to ={`/details?brand=${brands[3]}`}><li>KTM</li></Link>
+                <Link to ={`/details?brand=${brands[4]}`}><li>Harley-Davidson</li></Link>
             </BurguerNav>
         </Container>
     )

@@ -6,28 +6,36 @@ import Footer from "./Footer";
 import { useLocation } from 'react-router-dom';
 
 function Detail() {
-  
-  /*
-  const [typee, setTypee] = useState([])
 
-  const loadMoto = async (type) => {
-      const res = await fetch(`http://localhost:4000/get-motos/type/${type}`);
-      console.log(type);
-      const data = await res.json();
-      setTypee(data);
-      console.log("tipo: "+data);
-}
+  const [aux, setAux] = useState([]);
 
-useEffect(() => {
-    loadMoto(type);
-}, type)
-*/
+  let {search} = useLocation();
+    let query = new URLSearchParams(search);
+    let type = query.get("type");
+    let mark = query.get("brand");
+
+    const title = () =>{
+      if (type != null && mark == null) {
+        setAux("Modelos "+ type.toUpperCase());
+      } 
+      else if (mark != null && type == null){
+        setAux("Modelos "+mark.toUpperCase());
+      }
+      else if ((type && mark) == null){
+        setAux("Todos los Modelos Disponibles");
+      }
+    }
+
+    useEffect(() => {
+      title()
+    }, [search])
+
   return ( 
   <Container>
-
+    <Imag></Imag>
       <Title1>Marcas Disponibles</Title1>
         <Brands />
-      <Title1>Modelos</Title1>
+      <Title3>{aux}</Title3>
         <List />
         <Footer/>
   </Container>
@@ -41,7 +49,26 @@ const Title1 = styled.h3`
   display: none;
 }
 `
-
+const Title3 = styled.h2`
+  padding-top: 5vh;
+}
+`
 const Container = styled.div`
-  margin-top: 14vh;
+  margin-top: 5vh;
+  background-image: url("https://images4.alphacoders.com/360/thumb-1920-36024.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 0
+`
+const Imag = styled.div`
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, .8);
+    z-index: -1;
 `
