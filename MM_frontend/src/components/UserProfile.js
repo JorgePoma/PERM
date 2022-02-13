@@ -31,7 +31,7 @@ function UserProfile() {
       </Account>
       </Data>
       <Save>
-        <Title>Save List</Title>
+        <Title>Lista de Reservas</Title>
         <ListUnsave/>
       </Save>
     </Container>

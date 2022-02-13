@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
+import { Link } from 'react-router-dom';
 
 function Section({ title, description, leftBtnText, rightBtnText, backgroundImg }) {
 
@@ -16,12 +17,17 @@ function Section({ title, description, leftBtnText, rightBtnText, backgroundImg 
             <Fade bottom>
             <Buttons>
                 <Buttongroup>
+                <Link to={"/details"}>  
                     <Leftbutton>
                         {leftBtnText}
                     </Leftbutton>
+                </Link>
+                <Link to={"/details"}>  
                     <Rightbutton>
                         {rightBtnText}
                     </Rightbutton>
+                    </Link>
+                
                 </Buttongroup>
                 <Downarrow src="https://img.icons8.com/external-those-icons-lineal-color-those-icons/48/000000/external-arrow-arrows-those-icons-lineal-color-those-icons-1.png" />
             </Buttons>
@@ -64,7 +70,7 @@ const Itemtext = styled.div`
 const Buttongroup = styled.div`
     display: flex;
     margin-button: 30px;
-
+    z-index: 0;
     //media responsiva, para anchos menores a 768px los botones se muestran uno debajo del otro
 
     @media (max-width: 768px){
@@ -85,6 +91,7 @@ const Leftbutton = styled.div`
     font-size: 12px;
     cursor: pointer;
     margin: 8px;
+    z-index: 1;
 `
 const Rightbutton = styled(Leftbutton)`
     background: white;
@@ -96,4 +103,5 @@ const Downarrow = styled.img`
     animation: animateDown infinite 1.5s;
 `
 const Buttons = styled.div`
+    z-index: -1;
 `
