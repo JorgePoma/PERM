@@ -28,7 +28,7 @@ function Detail() {
 
     useEffect(() => {
       title()
-    }, [search])
+    })
 
   return ( 
   <Container>

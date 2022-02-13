@@ -3,13 +3,18 @@ import styled from "styled-components";
 import { selectMotos } from "../features/moto/motoSlice";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 function Header() {
     const [burgerStatus, setBurgerStatus] = useState(false);
     const motos = useSelector(selectMotos);
     const brands= ["suzuki", "yamaha", "honda", "ktm" ,"harley-davidson" ]
+
+    const { user, isAuthenticated } = useAuth0();
     return (
-        <Container>
+        <Container >
             <a translate='no'>
                 <Link to={'/'}>
                     <Logo > Mo | Ma </Logo>
@@ -24,12 +29,14 @@ function Header() {
             </Menu>
             <RightMenu>
                 <Link to='/details'>Shop</Link>
+                <LoginButton/>
                 <CustomMenu src="https://img.icons8.com/ios-filled/20/000000/menu--v1.png" onClick={() => setBurgerStatus(true)} />
             </RightMenu>
             <BurguerNav show={burgerStatus}>
                 <CloseWrapper>
                     <CustomClose src="https://img.icons8.com/ios/24/000000/chevron-right.png" onClick={() => setBurgerStatus(false)} />
                 </CloseWrapper>
+                <Link to={'/user/profile'}><li>My account</li></Link>
                 <li className='title'><a href="">TYPES</a></li>
                 {motos && motos.map((moto, index) => (
                     <Link to={`/details?type=${moto}`} key={index}>
@@ -42,6 +49,7 @@ function Header() {
                 <Link to ={`/details?brand=${brands[2]}`}><li>Honda</li></Link>
                 <Link to ={`/details?brand=${brands[3]}`}><li>KTM</li></Link>
                 <Link to ={`/details?brand=${brands[4]}`}><li>Harley-Davidson</li></Link>
+                {isAuthenticated &&( <LogoutButton /> )}
             </BurguerNav>
         </Container>
     )
@@ -117,7 +125,7 @@ const BurguerNav = styled.div`
     transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform 0.3s ease-out;
     li {
-        padding: 15px 0;
+        padding: 10px 0;
         border-bottom: 1px solid rgba(0,0,0, .2);
         a {
             font-weight: 600;

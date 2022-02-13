@@ -11,6 +11,8 @@
 /build
 
 # misc
+/MM_backend/.env
+/MM_frontend/.env
 .DS_Store
 .env.local
 .env.development.local

@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./components/Header";
 import Home from "./components/Home"
 import Detail from "./components/Detail"
+import UserProfile from './components/UserProfile';
 
 import {
   BrowserRouter as Router,
@@ -10,8 +11,8 @@ import {
   Route
 } from "react-router-dom";
 
-function App() {
 
+function App() {
   return (
     <div className="App">
       <Router>
@@ -23,8 +24,9 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/details/:type" component={<Detail />}/>
-          <Route exact path="/details/:brand" component={<Detail />}/>
+          <Route exact path="/details/:type" component={<Detail />} />
+          <Route exact path="/details/:brand" component={<Detail />} />
+          <Route exact path="/user/profile"><UserProfile /></Route>
         </Switch>
       </Router>
     </div>

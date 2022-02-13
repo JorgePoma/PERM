@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-function List() {
+function Listsave() {
     const { user, isAuthenticated } = useAuth0();
     const [Motos, setMotos] = useState([]);
     let Mot = {};
@@ -76,7 +76,7 @@ function List() {
                             <br />
                             <h5>{moto.description}</h5>
                             <Button>{isAuthenticated && (<Add onClick={() => {
-                                saveMotoUsuario(user.email, moto.model)}}>Add</Add>)}
+                                saveMotoUsuario(user.email, moto.model)}}>Delete</Add>)}
                             </Button>
                         </Description>
                     </Content>
@@ -86,7 +86,7 @@ function List() {
     )
 }
 
-export default List;
+export default Listsave;
 
 const Container = styled.div`
     margin-bottom: 30px;

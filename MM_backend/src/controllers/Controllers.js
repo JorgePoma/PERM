@@ -95,11 +95,29 @@ const deleteMoto = async (req, res, next) => {
     }
 }
 
+//guardando moto
+
+const saveMoto = async (req, res, next) => {
+    const { correo, model } = req.body;
+
+    try {
+        const result = await pool.query(
+            "INSERT INTO users (correo, model) VALUES ($1, $2) RETURNING *", [
+            correo,
+            model
+        ])
+        res.json(result.rows[0]);
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     getAllMotos,
     geMotosbyMark,
     geMotosbyType,
     createMoto,
     updateMoto,
-    deleteMoto
+    deleteMoto,
+    saveMoto
 }
