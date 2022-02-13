@@ -4,23 +4,26 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-function Listsave() {
+function ListUnsave() {
     const { user, isAuthenticated } = useAuth0();
     const [Motos, setMotos] = useState([]);
+    //const {Email, setEmail} = useState();
     let Mot = {};
+    let e = {};
     //obtener valores de URL
     let { search } = useLocation();
-    let query = new URLSearchParams(search);
 
-    let type = query.get("type");
-    let mark = query.get("brand");
+    //setEmail(user.email);
+    //console.log(Email)
 
-    const loadMotos = async () => {
-        const response = await fetch('http://localhost:4000/get-motos')
+    const loadMotos = async (correo) => {
+        let email = user.email;
+        const response = await fetch(`http://localhost:4000/listsave-moto/${email}`);
         const data = await response.json()
+        console.log(data)
         setMotos(data);
     }
-
+/*
     const loadMotosType = async () => {
         const response = await fetch(`http://localhost:4000/get-motos/type/${type}`)
         const data = await response.json()
@@ -34,11 +37,11 @@ function Listsave() {
         setMotos(data);
         console.log(data);
     }
-
-    const saveMotoUsuario = async (correo, model) => {
+*/
+    const UnsaveMotoUsuario = async (correo, model) => {
         console.log(correo, model);
-        Mot = { correo: correo, model: model };
-        const response = await fetch(`http://localhost:4000/save-moto`, {
+        Mot = { correo: correo ,model: model};
+        const response = await fetch(`http://localhost:4000/unsave-moto`, {
             method: "POST",
             body: JSON.stringify(Mot),
             headers: { "Content-Type": "application/json" },
@@ -46,21 +49,15 @@ function Listsave() {
         const data = await response.json()
         console.log(data);
     }
-
+    
     const selectResult = () => {
-        if (type === null && mark === null) {
-            loadMotos();
-        } else if (mark === null && type != null) {
-            loadMotosType();
-        } else if (type === null && mark != null) {
-            loadMotosBrand();
-        }
+        loadMotos(user.email);
         return true;
     }
-
+    
     useEffect(() => {
         selectResult();
-    }, [search])
+    },[Motos])
 
     return (
 
@@ -76,7 +73,7 @@ function Listsave() {
                             <br />
                             <h5>{moto.description}</h5>
                             <Button>{isAuthenticated && (<Add onClick={() => {
-                                saveMotoUsuario(user.email, moto.model)}}>Delete</Add>)}
+                                UnsaveMotoUsuario(user.email, moto.model)}}>Delete</Add>)}
                             </Button>
                         </Description>
                     </Content>
@@ -86,7 +83,7 @@ function Listsave() {
     )
 }
 
-export default Listsave;
+export default ListUnsave;
 
 const Container = styled.div`
     margin-bottom: 30px;
@@ -137,7 +134,7 @@ const Description = styled.div`
 `
 
 const Add = styled.button`
-    background-color: rgba(23, 26, 32, 0.8);
+    background-color: #DA5757;
     height: 40px;
     width: 76px;
     color white;

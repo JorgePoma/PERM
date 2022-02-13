@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useAuth0 } from '@auth0/auth0-react'
-import List from './List';
-import Listsave from './Listsave';
+import ListUnsave from './ListUnsave';
 
 
 function UserProfile() {
@@ -18,6 +17,7 @@ function UserProfile() {
           <h3>Foto de perfil</h3>
           <img src={user.picture}></img>
         </Imagen>
+        <Account>
         <h3>Nombre de usuario</h3>
         <h4>{user.nickname}</h4>
         <h3>Correo Electrónico:</h3>
@@ -26,9 +26,11 @@ function UserProfile() {
         <h4 defaultValue={
           ""
         }>{user.phone_number}</h4>
+      </Account>
       </Data>
       <Save>
-        <Listsave/>
+        <Title>Save List</Title>
+        <ListUnsave/>
       </Save>
     </Container>
   )
@@ -83,15 +85,42 @@ const Imagen = styled.div`
         height: 20vh;
         //object-fit: cover;
         padding: 0vh;
+        border-radius: 45%;
+        box-shadow: rgb(0 0 0/29%) 0px 16px 30px -10px,
+        rgb(0 0 0/13%) 0px 23px 20px -15px;
+    }
+    h3{
+      color: white;
     }
     background-color: #DA5757;
     margin: 0vh;
     padding: 5vh;
     //border: 3px solid rgba(0, 0, 0, 0.2);
-    //box-shadow: rgb(0 0 0/29%) 0px 16px 30px -10px,
-    rgb(0 0 0/13%) 0px 23px 20px -15px;
 `
 
-const Lista = styled.div`
-
+const Title = styled.h1`  
+  //margin-top: 6vh;
+  padding: 1vh;
+  bottom: 0;
+  left: 20%;
+  right: 0;
+  background-color: rgba(57, 60, 65, .8);
+  font-size: 2vh;
+  height: 4vh;
+  color: white;
+  alight-items:center;
+  position: fixed;
+  display: grid;
+  grid-gap: 36px;
+  z-index: 1;
+  @media(max-width: 1110px){
+    left: 0;
+}
+`
+const Account = styled.div`
+    height: 46vh;
+    padding-top: 7vh;
+    display: grid;
+    grid-gap: 0px;
+    padding-bottom: 7vh;
 `

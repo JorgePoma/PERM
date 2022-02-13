@@ -13,6 +13,7 @@ function Header() {
     const brands= ["suzuki", "yamaha", "honda", "ktm" ,"harley-davidson" ]
 
     const { user, isAuthenticated } = useAuth0();
+    
     return (
         <Container >
             <a translate='no'>

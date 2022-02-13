@@ -112,6 +112,36 @@ const saveMoto = async (req, res, next) => {
     }
 }
 
+//quitar de guardados
+
+const unsaveMoto = async (req, res, next) => {
+    const { correo, model } = req.body;
+
+    try {
+        const result = await pool.query(
+            "DELETE FROM users where correo = $1 AND model = $2 RETURNING *", [
+            correo,
+            model
+        ])
+        res.json(result.rows[0]);
+    } catch (error) {
+        next(error)
+    }
+}
+
+//listar guardados
+
+const listsaveMoto = async (req, res, next) => {
+    const { email } = req.params;
+    try {
+        const result = await pool.query(
+            "SELECT * FROM task, users where users.correo = $1 AND users.model = task.model" , [email])
+        res.json(result.rows);
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     getAllMotos,
     geMotosbyMark,
@@ -119,5 +149,7 @@ module.exports = {
     createMoto,
     updateMoto,
     deleteMoto,
-    saveMoto
+    saveMoto,
+    unsaveMoto,
+    listsaveMoto
 }
