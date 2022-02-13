@@ -1,36 +1,45 @@
 import React from 'react';
 import styled from "styled-components";
-import Section from "./Section"
+import Section from "./Section";
+
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 function Home() {
     
+    const cld = new Cloudinary({
+        cloud: {
+          cloudName: 'djw9lea2q'
+        }
+      });
+
     return (
         <Container>
             <Section 
                 title="Modelos Deportivos"
                 description="Modelos profesionales de pista"
-                backgroundImg="https://www.ventos.site/wp-content/uploads/2021/08/Honda-Rebel-300-e1621200645713.jpg"
+                backgroundImg='https://res.cloudinary.com/djw9lea2q/image/upload/v1644777367/mm/Honda-Rebel-300-e1621200645713_pu3sn6.jpg'  
                 leftBtnText="Ordena Ya"
                 rightBtnText="Inventario Disponible"
             />
             <Section 
                 title="Modelos Urbanos"
                 description="Modelos profesionales de eléctricos"
-                backgroundImg="https://www.elcarrocolombiano.com/wp-content/uploads/2019/07/20190712-HARLEY-DAVIDSON-LIVEWIRE-PRIMER-MOTO-ELECTRICA-01.jpg"
+                backgroundImg="https://res.cloudinary.com/djw9lea2q/image/upload/v1644777388/mm/20190712-HARLEY-DAVIDSON-LIVEWIRE-PRIMER-MOTO-ELECTRICA-01_y7h7mp.jpg"
                 leftBtnText="Ordena Ya"
                 rightBtnText="Inventario Disponible"
             />
             <Section 
                 title="Modelos Motocross"
                 description="Modelos estilo motocross"
-                backgroundImg="https://cdn.pixabay.com/photo/2017/07/28/17/54/motocross-2549359_1280.jpg"
+                backgroundImg="https://res.cloudinary.com/djw9lea2q/image/upload/v1644777407/mm/motocross-2549359_1280_lcbc40.jpg"
                 leftBtnText="Ordena Ya"
                 rightBtnText="Inventario Disponible"
             />
             <Section 
                 title="Modelos Clasicos"
                 description="Modelos clásicos y elegantes"
-                backgroundImg="http://la-motorbit-media.s3.amazonaws.com/2017/10/motos-clasicas-triumph-bonneville.jpg"
+                backgroundImg="https://res.cloudinary.com/djw9lea2q/image/upload/v1644777425/mm/motos-clasicas-triumph-bonneville_iqyrdo.jpg"
                 leftBtnText="Ordena Ya"
                 rightBtnText="Inventario Disponible"
             />

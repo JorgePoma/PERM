@@ -55,7 +55,7 @@ const Title3 = styled.h2`
 `
 const Container = styled.div`
   margin-top: 5vh;
-  background-image: url("https://images4.alphacoders.com/360/thumb-1920-36024.jpg");
+  background-image: url("https://res.cloudinary.com/djw9lea2q/image/upload/v1644779426/mm/thumb-1920-36024_i62uob.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import Detail from "./components/Detail"
 import UserProfile from './components/UserProfile';
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,7 @@ import {
 
 
 function App() {
+
   return (
     <div className="App">
       <Router>

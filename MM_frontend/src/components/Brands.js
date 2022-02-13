@@ -8,23 +8,23 @@ function Brands() {
     <Container>
         <Wrap>
         <Link to ={`/details?brand=${motos[0]}`}>
-        <img src="http://www.car-brand-names.com/wp-content/uploads/2016/03/Suzuki-logo-2.jpg" alt=''/></Link>   
+        <img src="https://res.cloudinary.com/djw9lea2q/image/upload/v1644779029/mm/banners/Suzuki-logo-2_w0g7vt.jpg" alt=''/></Link>   
         </Wrap>
         <Wrap>
         <Link to ={`/details?brand=${motos[1]}`} >
-            <img src="https://www.seekpng.com/png/detail/257-2576667_yamaha-transparent-png-yamaha-logo-black-png.png" alt=''/></Link>
+            <img src="https://res.cloudinary.com/djw9lea2q/image/upload/v1644779046/mm/banners/257-2576667_yamaha-transparent-png-yamaha-logo-black-png_mmtwlp.jpg" alt=''/></Link>
         </Wrap>
         <Wrap>
         <Link to ={`/details?brand=${motos[2]}`} >
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_bFhavSuzkOpTkcyGlvbVSCnwre8ADbtzj3tGLrSQLoIqSBW5ITJqV_9EwxvSSJD05Os&usqp=CAU" alt=''/></Link>
+            <img src="https://res.cloudinary.com/djw9lea2q/image/upload/v1644779068/mm/banners/images_qhtctx.png" alt=''/></Link>
         </Wrap>
         <Wrap>
         <Link to ={`/details?brand=${motos[3]}`} >   
-            <img src="https://cdn.worldvectorlogo.com/logos/ktm-racing-1.svg" alt=''/></Link>
+            <img src="https://res.cloudinary.com/djw9lea2q/image/upload/v1644779089/mm/banners/ktm-racing-1_uwxwff.svg" alt=''/></Link>
         </Wrap>
         <Wrap>
         <Link to ={`/details?brand=${motos[4]}`} >
-            <img src="https://cdn.andresmorales.es/wp-content/uploads/2015/04/isologo-harley.png" alt=''/></Link>
+            <img src="https://res.cloudinary.com/djw9lea2q/image/upload/v1644779115/mm/banners/isologo-harley_qubq7k.png" alt=''/></Link>
         </Wrap>
     </Container>
   ) 
