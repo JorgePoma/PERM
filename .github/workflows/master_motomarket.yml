@@ -26,7 +26,6 @@ jobs:
           cd MM_frontend
           ls
           npm install
-          npm run build --if-present
           cd ..
           cd MM_backend
           ls
