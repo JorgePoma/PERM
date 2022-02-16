@@ -58,4 +58,9 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6A7BF55E21CA4663802FCF9EC7B5224A }}
           package: .
-          startUp-Command: 'cd MM_backend && npm run dev  && cd .. && cd MM_frontend && npm start'
+          run: | 
+            cd MM_backend  
+            npm run dev  
+            cd .. 
+            cd MM_frontend 
+            npm start
