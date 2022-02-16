@@ -23,13 +23,15 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          cd MM_frontend
-          ls
-          npm install
-          cd ..
           cd MM_backend
           ls
           npm install
+          npm start
+          cd ..
+          cd MM_frontend
+          ls
+          npm install
+          npm run dev
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -58,9 +60,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6A7BF55E21CA4663802FCF9EC7B5224A }}
           package: .
-          run: | 
-            cd MM_backend  
-            npm run dev  
-            cd .. 
-            cd MM_frontend 
-            npm start
