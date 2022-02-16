@@ -18,7 +18,6 @@ app.use((err, req, res, next) =>{
     })
 });
 
-app.use(bodyParser.json());
 app.use(express.static(process.cwd()+"/MM_frontend/build/"));
 
 
